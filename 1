@@ -1,0 +1,17 @@
+ListWork9. Дан односвязный линейный список и указатель на голову списка P1. Необходимо вывести указатель на последний элемент этого списка Px
+
+#include <windows.h>
+#pragma hdrstop
+#include "pt4.h"
+
+using namespace std;
+
+void Solve()
+{
+	Task("ListWork9");
+	PNode Head;
+	pt >> Head;
+	while (Head->Next != NULL)
+		Head = Head->Next;
+	PutP(Head);
+}
