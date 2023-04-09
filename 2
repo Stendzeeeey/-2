@@ -1,0 +1,46 @@
+ListWork22°. Дан односвязный линейный список и указатель на голову списка P1. 
+Необходимо вставить значение M после каждого второго элемента списка, и вывести ссылку на последний элемент полученного списка P2.
+
+#include <windows.h>
+#pragma hdrstop
+#include "pt4.h"
+using namespace std;
+
+void AddAfter (PNode p, PNode NewNode, int M) 
+{ 
+  NewNode->Next = p->Next; 
+  p->Next = NewNode; 
+}
+
+
+void Solve()
+{
+    Task("ListWork22");
+	int m;
+	pt>>m;
+	PNode newnode;
+	TNode *p, *q;
+	pt>>p;
+	q=p;
+	while (q && q->Next && q->Next->Next)
+	{
+		q=q->Next;
+		PNode New=new TNode;
+		New->Next=q->Next;
+		New->Data=m;
+		q->Next=New;
+		q=q->Next;
+		q=q->Next;
+	}
+	if (q && q->Next && !q->Next->Next)
+	{
+		q=q->Next;
+		PNode New=new TNode;
+		New->Next=q->Next;
+		New->Data=m;
+		q->Next=New;
+		q=q->Next;
+	}
+	pt<<q;
+
+}
