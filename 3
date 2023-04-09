@@ -1,0 +1,32 @@
+ListWork59°. Дан односвязный линейный список и указатель на голову списка P1. 
+Необходимо вставить значение M после каждого K-го элемента списка и вывести ссылку на последний элемент полученного списка P2.
+
+#include <windows.h>
+#pragma hdrstop
+#include "pt4.h"
+using namespace std;
+
+void Solve()
+{
+	Task("ListWork59");
+
+	TNode* p;
+	int m, k;
+
+	pt >> m >> k;
+	pt >> p;
+
+	while (p->Next)
+	{
+		for (int i = 0; i < k - 1; i++)
+			p = p->Next;
+		PNode newNode = new TNode;
+		newNode->Data = m;
+		newNode->Next = p->Next;
+		p->Next = newNode;
+		p = p->Next;
+		if (p->Next) p = p->Next;
+	}
+
+	pt << p;
+}
