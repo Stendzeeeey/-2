@@ -1,0 +1,34 @@
+ListWork67°. Дано кольцо (односвязный циклический список) и указатель на первый элемент этого списка. 
+Создать текстовый файл, в который вывести содержимое этого списка с шагом 2: сначала первый элемент списка, потом третий, далее пятый и т.д. 
+В общем случае: выводить i-й элемент, а за ним (i+2)-й элемент. Если список заканчивается, продолжать нумерацию с начала списка. 
+После вывода очередного числа удалять его в списке. Вывод про должать до тех пор, пока в списке есть числа.
+
+
+#include <fstream>
+#include <windows.h>
+#pragma hdrstop
+#include "pt4.h"
+using namespace std;
+
+void DelNode(PNode &Node) {
+	Node->Next->Prev = Node->Prev;
+	Node->Prev->Next = Node->Next;
+}
+
+void Prod(PNode &Node, ofstream &fot) {
+	PNode Curr; while (Node != NULL) {
+		fot << Node->Data; Curr = Node;
+		Node = Node->Next->Next;
+		DelNode(Curr);
+	}
+}
+
+void Solve()
+{
+    Task("ListWork67");
+	PNode P1; pt >> P1;
+	string fname; pt >> fname;
+	ofstream fot(fname);
+	Prod(P1, fot);
+	fot.close();
+}
